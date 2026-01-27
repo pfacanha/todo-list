@@ -1,0 +1,149 @@
+/* =========================
+   FONTS
+   ========================= */
+
+@font-face {
+  font-family: "WF Visual Sans";
+  src: url("https://dhygzobemt712.cloudfront.net/Fonts/VF/WFVisualSansVF.woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========================
+   ROOT VARIABLES
+   ========================= */
+
+:root {
+  /* Typography */
+  --font-main:
+    "WF Visual Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+
+  /* Color Palette */
+  --color-primary: #133c55;
+  --color-secondary: #386fa4;
+  --color-accent: #59a5d8;
+  --color-light: #84d2f6;
+  --color-bg: #91e5f6;
+
+  /* Defaults */
+  --text-color: var(--color-primary);
+  --background-color: var(--color-bg);
+
+  /* Layout */
+  --max-width: 1100px;
+  --spacing: 1rem;
+}
+
+/* =========================
+   RESET / BASE
+   ========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  font-size: 16px; /* 1rem = 16px */
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-main);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  line-height: 1.5;
+}
+
+/* =========================
+   WRAPPER (STICKY FOOTER)
+   ========================= */
+
+#wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: var(--spacing);
+}
+
+/* =========================
+   SEMANTIC LAYOUT
+   ========================= */
+
+header,
+footer {
+  padding: var(--spacing);
+}
+
+main {
+  flex: 1; /* sticky footer magic */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+}
+
+/* =========================
+   TYPOGRAPHY
+   ========================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-primary);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p {
+  max-width: 65ch;
+}
+
+/* =========================
+   MEDIA (RULE OF THUMB)
+   ========================= */
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================
+   LINKS & FORMS
+   ========================= */
+
+a {
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
