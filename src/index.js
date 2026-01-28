@@ -1,6 +1,4 @@
 import "./styles.css";
-
-const todos = [];
 class Todo {
   constructor(title, description, dueDate, priority, checklist) {
     this.id = crypto.randomUUID();
@@ -10,18 +8,50 @@ class Todo {
     this.priority = priority;
     this.checklist = checklist;
   }
+
+  getPriority() {
+    return this.priority;
+  }
+
+  setPriority(newPriority) {
+    this.priority = newPriority;
+  }
+
+  toggleChecklist() {
+    this.checklist = !this.checklist;
+  }
 }
 
-function createTodo(title, description, dueDate, priority) {
-  return new Todo(title, description, dueDate, priority, false);
-}
-function addTodo(todo) {
-  todos.push(todo);
-}
-function deleteTodo() {}
-function toggleTodo() {}
+const todoController = (function () {
+  const todos = [];
 
-const newTodo = createTodo("Surfar", "In Sombrio", "Today", "High");
-addTodo(newTodo);
+  function createTodo(title, description, dueDate, priority) {
+    return new Todo(title, description, dueDate, priority, false);
+  }
+  const addTodo = (todo) => {
+    todos.push(todo);
+  };
+  const deleteTodo = () => {};
 
-console.log(todos);
+  const getTodos = () => {
+    console.log(todos);
+  };
+
+  return {
+    createTodo,
+    addTodo,
+    deleteTodo,
+    toggleTodo,
+    getTodos,
+  };
+})();
+
+const newTodo = todoController.createTodo(
+  "Surfar",
+  "In Sombrio",
+  "Today",
+  "High",
+);
+
+todoController.addTodo(newTodo);
+todoController.getTodos();
