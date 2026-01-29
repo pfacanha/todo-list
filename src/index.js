@@ -1,5 +1,7 @@
 import "./styles.css";
 class Todo {
+  #priority;
+
   constructor(title, description, dueDate, priority, checklist) {
     this.id = crypto.randomUUID();
     this.title = title;
@@ -10,7 +12,7 @@ class Todo {
   }
 
   getPriority() {
-    return this.priority;
+    return this.#priority;
   }
 
   setPriority(newPriority) {
@@ -41,7 +43,6 @@ const todoController = (function () {
     createTodo,
     addTodo,
     deleteTodo,
-    toggleTodo,
     printTodos,
   };
 })();
@@ -55,3 +56,4 @@ const newTodo = todoController.createTodo(
 
 todoController.addTodo(newTodo);
 todoController.printTodos();
+console.log(newTodo.priority);
