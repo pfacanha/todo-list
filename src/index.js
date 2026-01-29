@@ -1,18 +1,34 @@
 import "./styles.css";
 class Todo {
+  #title;
+  #description;
+  #dueDate;
   #priority;
+  #checklist;
 
   constructor(title, description, dueDate, priority, checklist) {
     this.id = crypto.randomUUID();
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
+    this.#title = title;
+    this.#description = description;
+    this.#dueDate = dueDate;
     this.#priority = priority;
-    this.checklist = checklist;
+    this.#checklist = checklist;
   }
 
+  getTitle() {
+    return this.#title;
+  }
+  getDescription() {
+    return this.#description;
+  }
+  getDueDate() {
+    return this.#dueDate;
+  }
   getPriority() {
     return this.#priority;
+  }
+  getChecklist() {
+    return this.#checklist;
   }
 
   setPriority(newPriority) {
@@ -36,7 +52,7 @@ const todoController = (function () {
   const deleteTodo = () => {};
 
   const printTodos = () => {
-    console.log(todos);
+    console.table(todos);
   };
 
   return {
@@ -57,6 +73,3 @@ const newTodo = todoController.createTodo(
 debugger;
 todoController.addTodo(newTodo);
 todoController.printTodos();
-console.log(newTodo.priority);
-newTodo.priority = "Low";
-console.log(newTodo.priority);
