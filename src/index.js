@@ -70,7 +70,7 @@ class Project {
     this.name = newProjectName;
   }
 
-  getProjectTodos() {
+  getTodos() {
     return this.todos;
   }
 
@@ -111,7 +111,8 @@ const todoController = (function () {
   const addTodo = (todo, projectName) => {
     const project = fetchProject(projectName);
     if (project) {
-      project.addNewTodo(todo);
+      const projectFolder = project.getTodos();
+      projectFolder.addNewTodo(todo);
     } else {
       defaultFolder.push(todo);
     }
@@ -121,8 +122,10 @@ const todoController = (function () {
     const id = todo.id;
     const project = fetchProject(projectName);
     if (project) {
-      project.todos.splice(id, 1);
+      const projectFolder = project.getTodos();
+      projectFolder.splice(id, 1);
     } else {
+      defaultFolder.splice(id, 1);
     }
   };
 
