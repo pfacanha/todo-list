@@ -79,23 +79,19 @@ const todoController = (function () {
     return new Project(name);
   }
 
-  const addProject = (todo, projectName) => {
-    const newProject = createProject(projectName);
-    newProject.todos.push(todo);
-    allTodos.push(newProject);
-  };
-
   const fetchProject = (projectName) => {
     return allTodos.find((project) => (project.name = projectName));
   };
 
-  const hasProject = (project) => {
-    if (!project) {
-      return false;
-    } else {
-      return true;
-    }
+  const checkProject = (projectName) => {
+    return fetchProject(projectName);
   };
+
+  const addTodo = (todo) => {
+    allTodos[0].todos.push(todo);
+  };
+
+  const deleteTodo = (todo) => {};
 
   const updateTodos = (todo, projectName) => {
     const project = fetchProject(projectName);
@@ -105,12 +101,6 @@ const todoController = (function () {
       addProject(todo, projectName);
     }
   };
-
-  const addTodo = (todo) => {
-    allTodos[0].todos.push(todo);
-  };
-
-  const deleteTodo = (todo) => {};
 
   const printTodos = () => {
     console.table(allTodos);
