@@ -7,7 +7,7 @@ class Todo {
   #checklist;
 
   constructor(title, description, dueDate, priority, checklist) {
-    this.id = crypto.randomUUID();
+    this.id = Math.floor(Math.random() * 1_000_000);
     this.#title = title;
     this.#description = description;
     this.#dueDate = dueDate;
@@ -75,21 +75,25 @@ const todoController = (function () {
     return new Todo(title, description, dueDate, priority, false);
   }
 
-  function createProject(name, todo) {
-    return new Project(name, todo);
+  function createProject(name) {
+    return new Project(name);
   }
 
   const addTodo = (todo, projectName) => {
-    const res = allTodos.find((project) => project.name == projectName);
-    if (!res.name) {
-      allTodos[0].todos.push(todo);
-    } else {
+    const project = allTodos.find((proj) => proj.name == projectName);
+    if (!project) {
       const newProject = createProject(projectName);
       newProject.todos.push(todo);
+      allTodos.push(newProject);
     }
+    allTodos[0].todos.push(todo);
   };
-  const deleteTodo = (id, projectName) => {
-    allTodos.splice(id, 1);
+
+  const deleteTodo = (todo, projectName) => {
+    const project = allTodos.find((proj) => proj.name == projectName);
+    if (!project) {
+      allTodos[0].todos = allTodos[0].todos.filter((t) => t.id != todo.id);
+    }
   };
 
   const printTodos = () => {
@@ -105,15 +109,24 @@ const todoController = (function () {
   };
 })();
 
-const newTodo = todoController.createTodo(
+const firstTodo = todoController.createTodo(
   "Surfar",
   "In Sombrio",
   "Today",
   "High",
 );
 
+const secondTodo = todoController.createTodo(
+  "Jogar Futebol",
+  "In JR",
+  "Tomorrow",
+  "Low",
+);
+
 const screenController = (function () {})();
 
 debugger;
-todoController.addTodo(newTodo);
+todoController.addTodo(firstTodo, "BCIT");
+todoController.addTodo(secondTodo);
+todoController.deleteTodo(secondTodo);
 todoController.printTodos();
