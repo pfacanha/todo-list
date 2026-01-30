@@ -35,30 +35,70 @@ class Todo {
     this.#priority = newPriority;
   }
 
+  setTitle(newTitle) {
+    this.#title = newTitle;
+  }
+
+  setDescription(newDescription) {
+    this.#description = newDescription;
+  }
+
+  setDueDate(newDueDate) {
+    this.#dueDate = newDueDate;
+  }
+
+  setChecklist(newChecklist) {
+    this.#checklist = newChecklist;
+  }
+
   toggleChecklist() {
     this.checklist = !this.checklist;
   }
 }
 
+class Project {
+  constructor(name) {
+    this.name = name;
+    this.todos = [];
+  }
+}
+
 const todoController = (function () {
-  const todos = [];
+  const allTodos = [
+    {
+      name: "Default",
+      todos: [],
+    },
+  ];
 
   function createTodo(title, description, dueDate, priority) {
     return new Todo(title, description, dueDate, priority, false);
   }
-  const addTodo = (todo) => {
-    todos.push(todo);
+
+  function createProject(name, todo) {
+    return new Project(name, todo);
+  }
+
+  const addTodo = (todo, projectName) => {
+    const res = allTodos.find((project) => project.name == projectName);
+    if (!res.name) {
+      allTodos[0].push(todo);
+    } else {
+      const newProject = createProject(projectName);
+      newProject.todos.push(todo);
+    }
   };
-  const deleteTodo = (id) => {
-    todos.splice(id, 1);
+  const deleteTodo = (id, projectName) => {
+    allTodos.splice(id, 1);
   };
 
   const printTodos = () => {
-    console.table(todos);
+    console.table(allTodos);
   };
 
   return {
     createTodo,
+    createProject,
     addTodo,
     deleteTodo,
     printTodos,
@@ -71,6 +111,8 @@ const newTodo = todoController.createTodo(
   "Today",
   "High",
 );
+
+const screenController = (function () {})();
 
 debugger;
 todoController.addTodo(newTodo);
