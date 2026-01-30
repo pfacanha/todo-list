@@ -102,19 +102,18 @@ const todoController = (function () {
   };
 
   const addProject = (projectName) => {
-    if (!fetchProject(projectName)) {
-      const newProject = createProject(projectName);
-      archive.push(newProject);
-    }
+    const newProject = createProject(projectName);
+    archive.push(newProject);
+    return newProject;
   };
 
   const addTodo = (todo, projectName) => {
-    const project = fetchProject(projectName);
-    if (project) {
-      const projectFolder = project.getTodos();
-      projectFolder.addNewTodo(todo);
-    } else {
+    const isProjectFound = fetchProject(projectName);
+    if (!isProjectFound) {
       defaultFolder.push(todo);
+    } else {
+      const newProject = addProject(projectName);
+      newProject.addNewTodo(todo);
     }
   };
 
@@ -129,17 +128,21 @@ const todoController = (function () {
     }
   };
 
+  const deleteProject = (projectName) => {
+    archive = archive.filter((project) => project.name !== projectName);
+  };
+
   const printTodos = () => {
     console.table(archive);
   };
 
   return {
-    addProject,
     addTodo,
-    addProjectTodo,
+    addProject,
     createTodo,
     createProject,
     deleteTodo,
+    deleteProject,
     fetchProject,
     printTodos,
   };
@@ -163,6 +166,6 @@ const screenController = (function () {})();
 
 debugger;
 todoController.addTodo(firstTodo, "BCIT");
-todoController.addTodo(secondTodo);
+todoController.addTodo(secondTodo, "");
 todoController.deleteTodo(secondTodo);
 todoController.printTodos();
