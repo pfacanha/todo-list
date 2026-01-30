@@ -59,7 +59,7 @@ class Todo {
 class Project {
   constructor(name) {
     this.name = name;
-    this.projectTodos = [];
+    this.todos = [];
   }
 
   getName() {
@@ -75,7 +75,7 @@ class Project {
   }
 
   addNewTodo(todo) {
-    this.projectTodos.push(todo);
+    this.todos.push(todo);
   }
 }
 
@@ -98,7 +98,7 @@ const todoController = (function () {
   }
 
   const fetchProject = (projectName) => {
-    return archive.find((project) => (project.name = projectName));
+    return archive.find((project) => project.name === projectName);
   };
 
   const addProject = (projectName) => {
@@ -108,12 +108,17 @@ const todoController = (function () {
   };
 
   const addTodo = (todo, projectName) => {
-    const isProjectFound = fetchProject(projectName);
-    if (!isProjectFound) {
+    if (!projectName) {
       defaultFolder.push(todo);
-    } else {
+      return;
+    }
+
+    const project = fetchProject(projectName);
+    if (!project) {
       const newProject = addProject(projectName);
       newProject.addNewTodo(todo);
+    } else {
+      project.addNewTodo(todo);
     }
   };
 
@@ -160,6 +165,13 @@ const secondTodo = todoController.createTodo(
   "In JR",
   "Tomorrow",
   "Low",
+);
+
+const thirdTodo = todoController.createTodo(
+  "Estudar Coding",
+  "In Renfrew",
+  "Right Now!",
+  "Extremely High",
 );
 
 const screenController = (function () {})();
