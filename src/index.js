@@ -80,12 +80,14 @@ class Project {
 }
 
 const todoController = (function () {
-  const allTodos = [
+  const archive = [
     {
       name: "Default",
       todos: [],
     },
   ];
+
+  const defaultFolder = archive[0].todos;
 
   function createTodo(title, description, dueDate, priority) {
     return new Todo(title, description, dueDate, priority, false);
@@ -95,34 +97,37 @@ const todoController = (function () {
     return new Project(projectName);
   }
 
-  const hasProject = (projectName) => {
-    return allTodos.find((project) => (project.name = projectName));
+  const fetchProject = (projectName) => {
+    return archive.find((project) => (project.name = projectName));
   };
 
   const addProject = (projectName) => {
-    if (!hasProject(projectName)) {
+    if (!fetchProject(projectName)) {
       const newProject = createProject(projectName);
-      allTodos.push(newProject);
+      archive.push(newProject);
     }
   };
 
-  const addProjectTodo = (todo, projectName) => {
-    const project = hasProject(projectName);
+  const addTodo = (todo, projectName) => {
+    const project = fetchProject(projectName);
     if (project) {
       project.addNewTodo(todo);
     } else {
-      addTodo(todo);
+      defaultFolder.push(todo);
     }
   };
 
-  const addTodo = (todo) => {
-    allTodos[0].todos.push(todo);
+  const deleteTodo = (todo, projectName) => {
+    const id = todo.id;
+    const project = fetchProject(projectName);
+    if (project) {
+      project.todos.splice(id, 1);
+    } else {
+    }
   };
 
-  const deleteTodo = (todo) => {};
-
   const printTodos = () => {
-    console.table(allTodos);
+    console.table(archive);
   };
 
   return {
@@ -132,6 +137,7 @@ const todoController = (function () {
     createTodo,
     createProject,
     deleteTodo,
+    fetchProject,
     printTodos,
   };
 })();
