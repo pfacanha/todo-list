@@ -59,7 +59,23 @@ class Todo {
 class Project {
   constructor(name) {
     this.name = name;
-    this.todos = [];
+    this.projectTodos = [];
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  setProjectName(newProjectName) {
+    this.name = newProjectName;
+  }
+
+  getProjectTodos() {
+    return this.todos;
+  }
+
+  addProjectTodo(todo) {
+    this.projectTodos.push(todo);
   }
 }
 
@@ -79,12 +95,17 @@ const todoController = (function () {
     return new Project(name);
   }
 
-  const fetchProject = (projectName) => {
+  const hasProject = (projectName) => {
     return allTodos.find((project) => (project.name = projectName));
   };
 
-  const checkProject = (projectName) => {
-    return fetchProject(projectName);
+  const addToProject = (todo, projectName) => {
+    const project = hasProject(projectName);
+    if (project) {
+      project.addProjectTodo(todo);
+    } else {
+      addTodo(todo);
+    }
   };
 
   const addTodo = (todo) => {
@@ -93,23 +114,15 @@ const todoController = (function () {
 
   const deleteTodo = (todo) => {};
 
-  const updateTodos = (todo, projectName) => {
-    const project = fetchProject(projectName);
-    if (hasProject(project)) {
-      addTodo(todo);
-    } else {
-      addProject(todo, projectName);
-    }
-  };
-
   const printTodos = () => {
     console.table(allTodos);
   };
 
   return {
+    addTodo,
+    addToProject,
     createTodo,
     createProject,
-    addTodo,
     deleteTodo,
     printTodos,
   };
