@@ -167,5 +167,6 @@ const screenController = (function () {})();
 debugger;
 todoController.addTodo(firstTodo, "BCIT");
 todoController.addTodo(secondTodo, "");
+todoController.addTodo(thirdTodo);
 todoController.deleteTodo(secondTodo);
 todoController.printTodos();
