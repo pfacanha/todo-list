@@ -1,22 +1,22 @@
 import "./styles.css";
-import todoController from "./controllers/todoController.js";
+import controller from "./controllers/todoController.js";
 import screenController from "./controllers/screenController.js";
 
-const firstTodo = todoController.createTodo(
+const firstTodo = controller.createTodo(
   "Surfar",
   "In Sombrio",
   "Today",
   "High",
 );
 
-const secondTodo = todoController.createTodo(
+const secondTodo = controller.createTodo(
   "Jogar Futebol",
   "In JR",
   "Tomorrow",
   "Low",
 );
 
-const thirdTodo = todoController.createTodo(
+const thirdTodo = controller.createTodo(
   "Estudar Coding",
   "In Renfrew",
   "Right Now!",
@@ -24,9 +24,9 @@ const thirdTodo = todoController.createTodo(
 );
 
 // debugger;
-todoController.addTodo(firstTodo, "BCIT");
-todoController.addTodo(secondTodo, "");
-todoController.addTodo(thirdTodo);
-todoController.deleteTodo(secondTodo);
-todoController.deleteTodo(firstTodo, "BCIT");
-todoController.printTodos();
+controller.addTodo(firstTodo, "BCIT");
+controller.addTodo(secondTodo, "");
+controller.addTodo(thirdTodo);
+controller.deleteTodo(secondTodo);
+controller.deleteTodo(firstTodo, "BCIT");
+controller.printTodos();
