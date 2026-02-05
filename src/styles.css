@@ -98,6 +98,7 @@ sidebar {
 }
 
 .inbox {
+  color: var(--color-accent);
   background-color: var(--color-muted);
   margin-bottom: 10px;
 }
@@ -112,6 +113,23 @@ main {
   flex-direction: column;
   gap: var(--spacing);
   padding-left: 20px;
+}
+
+button {
+  padding: 0 10px;
+  margin: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+
+  background-color: var(--color-calm);
+  padding: 10px 20px;
 }
 
 /* =========================
