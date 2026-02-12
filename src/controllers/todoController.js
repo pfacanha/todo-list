@@ -41,10 +41,6 @@ const fetchTodos = (projectName) => {
   return project ? [...project.todos] : [];
 };
 
-const printTodos = () => {
-  console.table(archive);
-};
-
 export default {
   addTodo,
   addProject,
@@ -54,5 +50,4 @@ export default {
   deleteProject,
   fetchProject,
   fetchTodos,
-  printTodos,
 };
