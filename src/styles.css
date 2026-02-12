@@ -75,61 +75,6 @@ h1 {
   display: flex;
   flex: 1;
 }
-/* =========================
-   SEMANTIC LAYOUT
-   ========================= */
-
-header,
-footer {
-  padding: var(--spacing);
-}
-
-sidebar {
-  padding: 20px;
-  margin-bottom: var(--spacing);
-  border-radius: var(--spacing);
-  background-color: var(--color-calm);
-}
-
-main {
-  flex: 1; /* sticky footer magic */
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing);
-  padding-left: 20px;
-}
-
-button {
-  padding: 0 10px;
-  margin: 5px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: var(--spacing);
-  border-radius: var(--spacing);
-
-  background-color: var(--color-muted);
-  padding: 10px 20px;
-}
-
-form > input {
-  border-radius: 5px;
-}
-
-form > label {
-  padding-left: 7px;
-}
-
-form > p {
-  color: white;
-}
-
-/* =========================
-   CLASSES
-   ========================= */
 
 .inbox,
 .projects {
@@ -163,6 +108,39 @@ form > p {
 
 .addTodo {
   color: white;
+}
+
+/* =========================
+   SEMANTIC LAYOUT
+   ========================= */
+
+header,
+footer {
+  padding: var(--spacing);
+}
+
+sidebar {
+  padding: 20px;
+  margin-bottom: var(--spacing);
+  border-radius: var(--spacing);
+  background-color: var(--color-calm);
+}
+
+main {
+  flex: 1; /* sticky footer magic */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+  padding-left: 20px;
+}
+
+button {
+  padding: 0 10px;
+  margin: 5px;
+}
+
+li {
+  list-style-type: none;
 }
 
 /* =========================
@@ -233,4 +211,27 @@ footer {
 
 dialog {
   margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--spacing);
+  border-radius: var(--spacing);
+
+  background-color: var(--color-muted);
+  padding: 10px 20px;
+}
+
+form > input {
+  border-radius: 5px;
+}
+
+form > label {
+  padding-left: 7px;
+}
+
+form > p {
+  color: white;
 }

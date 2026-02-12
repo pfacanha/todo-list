@@ -9,8 +9,14 @@ const addForm = document.querySelector(".addForm");
 const addTodo = document.querySelector(".addTodo");
 const addProject = document.querySelector(".addProject");
 
-const todos = fetchTodos();
-console.log(todos);
+const todos = todoController.fetchTodos("Inbox");
+
+todos.forEach((todo) => {
+  const li = document.createElement("li");
+  li.textContent = todo;
+
+  inbox.appendChild(li);
+});
 
 addTodo.addEventListener("click", function () {
   addTodo.remove();

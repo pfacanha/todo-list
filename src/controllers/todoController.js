@@ -26,7 +26,9 @@ const addProject = (projectName) => {
   return newProject;
 };
 
-const addTodo = (todo) => {};
+const addTodo = (todo) => {
+  if (!todo) return;
+};
 
 const deleteTodo = (todo) => {};
 
@@ -34,8 +36,9 @@ const deleteProject = (projectName) => {
   archive = archive.filter((project) => project.name !== projectName);
 };
 
-const fetchTodos = () => {
-  return archive.map((t) => t.todos);
+const fetchTodos = (projectName) => {
+  const project = fetchProject(projectName);
+  return project ? [...project.todos] : [];
 };
 
 const printTodos = () => {
