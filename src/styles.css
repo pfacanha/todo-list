@@ -111,7 +111,7 @@ form {
   gap: var(--spacing);
   border-radius: var(--spacing);
 
-  background-color: var(--color-calm);
+  background-color: var(--color-muted);
   padding: 10px 20px;
 }
 
@@ -121,6 +121,10 @@ form > input {
 
 form > label {
   padding-left: 7px;
+}
+
+form > p {
+  color: white;
 }
 
 /* =========================
@@ -143,7 +147,8 @@ form > label {
   background-color: var(--color-accent);
 }
 
-.addBtn {
+.addTodo,
+.addProject {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -152,6 +157,10 @@ form > label {
 
   background-color: transparent;
   border: transparent;
+}
+
+.addTodo {
+  color: white;
 }
 
 /* =========================
