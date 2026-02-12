@@ -30,4 +30,3 @@ todoController.addTodo(secondTodo, "");
 todoController.addTodo(thirdTodo);
 todoController.deleteTodo(secondTodo);
 todoController.deleteTodo(firstTodo, "BCIT");
-todoController.printTodos();
