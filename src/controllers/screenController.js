@@ -14,6 +14,9 @@ addTodo.addEventListener("click", function () {
   const confirmBtn = document.createElement("button");
   const cancelBtn = document.createElement("button");
 
+  confirmBtn.textContent = "Confirm";
+  cancelBtn.textContent = "Cancel";
+
   const div = document.createElement("div");
   div.append(input, confirmBtn, cancelBtn);
 
