@@ -9,10 +9,22 @@ const addForm = document.querySelector(".addForm");
 const addTodo = document.querySelector(".addTodo");
 const addProject = document.querySelector(".addProject");
 
+const displayTodos = (project) => {
+  const todos = todoController.fetchTodos(project);
+  todos.forEach((todo) => {
+    const li = document.createElement("li");
+    li.textContent = todo;
+
+    inbox.appendChild(li);
+  });
+};
+
+displayTodos("Inbox");
+
 addTodo.addEventListener("click", function (e) {
   e.preventDefault();
 
-  addTodo.remove();
+  addTodo.textContent = "";
 
   // create input
   const label = document.createElement("label");
@@ -31,24 +43,22 @@ addTodo.addEventListener("click", function (e) {
   addForm.appendChild(newForm);
 
   confirmBtn.addEventListener("click", function (e) {
+    inbox.textContent = "";
     e.preventDefault();
 
     const task = input.value;
     input.value = "";
 
     todoController.addTodo(task);
+    displayTodos("Inbox");
+  });
+
+  cancelBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    return;
   });
 });
-
-const displayTodos = (project) => {
-  const todos = todoController.fetchTodos(project);
-  todos.forEach((todo) => {
-    const li = document.createElement("li");
-    li.textContent = todo;
-
-    inbox.appendChild(li);
-  });
-};
 
 export default {
   displayTodos,
