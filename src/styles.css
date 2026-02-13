@@ -5,8 +5,8 @@
 @font-face {
   font-family: "Roslindale";
   src:
-    url("./fonts/Roslindale-Regular.woff2") format("woff2"),
-    url("./fonts/Roslindale-Regular.woff") format("woff");
+    url("./fonts/Roslindale-DeckNarrowRegular-Testing.woff") format("woff"),
+    url("./fonts/Roslindale-DeckNarrowSemiBold-Testing.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
