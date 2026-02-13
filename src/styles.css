@@ -1,19 +1,13 @@
 /* =========================
    ROOT VARIABLES
    ========================= */
-
-@font-face {
-  font-family: "Roslindale";
-  src: url("./fonts/Roslindale-DeckNarrowRegular-Testing.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
 :root {
   /* Font */
   --font-main:
-    "Roslindale", "Inter", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+    "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 
   /* New Color Palette */
   --color-dark: #090909; /* very dark (primary text) */
