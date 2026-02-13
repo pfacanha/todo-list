@@ -9,15 +9,6 @@ const addForm = document.querySelector(".addForm");
 const addTodo = document.querySelector(".addTodo");
 const addProject = document.querySelector(".addProject");
 
-const todos = todoController.fetchTodos("Inbox");
-
-todos.forEach((todo) => {
-  const li = document.createElement("li");
-  li.textContent = todo;
-
-  inbox.appendChild(li);
-});
-
 addTodo.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -29,13 +20,36 @@ addTodo.addEventListener("click", function (e) {
   const confirmBtn = document.createElement("button");
   const cancelBtn = document.createElement("button");
 
-  label.textContent = "Task: ";
+  label.textContent = "Name: ";
   confirmBtn.textContent = "Confirm";
+  confirmBtn.type = "submit";
   cancelBtn.textContent = "Cancel";
 
-  const div = document.createElement("div");
-  div.append(label, input, confirmBtn, cancelBtn);
+  const newForm = document.createElement("div");
+  newForm.append(label, input, confirmBtn, cancelBtn);
 
-  addForm.appendChild(div);
+  addForm.appendChild(newForm);
+
+  confirmBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const task = input.value;
+    input.value = "";
+
+    todoController.addTodo(task);
+  });
 });
-addProject.addEventListener("click", function () {});
+
+const displayTodos = (project) => {
+  const todos = todoController.fetchTodos(project);
+  todos.forEach((todo) => {
+    const li = document.createElement("li");
+    li.textContent = todo;
+
+    inbox.appendChild(li);
+  });
+};
+
+export default {
+  displayTodos,
+};

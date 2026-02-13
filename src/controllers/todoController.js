@@ -28,6 +28,8 @@ const addProject = (projectName) => {
 
 const addTodo = (todo) => {
   if (!todo) return;
+
+  archive[0].todos.push(todo);
 };
 
 const deleteTodo = (todo) => {};
