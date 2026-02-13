@@ -43,8 +43,8 @@ addTodo.addEventListener("click", function (e) {
   addForm.appendChild(newForm);
 
   confirmBtn.addEventListener("click", function (e) {
-    inbox.textContent = "";
     e.preventDefault();
+    inbox.textContent = "";
 
     const task = input.value;
     input.value = "";
