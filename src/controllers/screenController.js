@@ -5,7 +5,7 @@ import todoController from "../controllers/todoController.js";
 const inbox = document.querySelector(".inbox");
 const projects = document.querySelector(".projects");
 
-const addForm = document.querySelector(".addForm");
+const div = document.querySelector(".addForm");
 const addTodo = document.querySelector(".addTodo");
 const addProject = document.querySelector(".addProject");
 
@@ -23,8 +23,7 @@ displayTodos("Inbox");
 
 addTodo.addEventListener("click", function (e) {
   e.preventDefault();
-
-  addTodo.textContent = "";
+  addTodo.style.display = "none";
 
   // create input
   const label = document.createElement("label");
@@ -34,13 +33,14 @@ addTodo.addEventListener("click", function (e) {
 
   label.textContent = "Name: ";
   confirmBtn.textContent = "Confirm";
-  confirmBtn.type = "submit";
+  confirmBtn.type = "button";
   cancelBtn.textContent = "Cancel";
+  cancelBtn.type = "button";
 
-  const newForm = document.createElement("div");
+  const newForm = document.createElement("form");
   newForm.append(label, input, confirmBtn, cancelBtn);
 
-  addForm.appendChild(newForm);
+  div.appendChild(newForm);
 
   confirmBtn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -51,12 +51,13 @@ addTodo.addEventListener("click", function (e) {
 
     todoController.addTodo(task);
     displayTodos("Inbox");
+    addTodo.style.display = "";
+    newForm.remove();
   });
 
   cancelBtn.addEventListener("click", function (e) {
     e.preventDefault();
-
-    return;
+    newForm.remove();
   });
 });
 
